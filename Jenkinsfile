@@ -9,7 +9,7 @@ pipeline {
             }
         }
         
-         stages {
+       
         stage('Build Backend') {
             steps {
                 // Change to the backend directory
@@ -28,7 +28,7 @@ pipeline {
                 }
             }
         }
-    }
+    
         
          stage('Test') {
             steps {
