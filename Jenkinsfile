@@ -12,19 +12,19 @@ pipeline {
         stage('Build') {
             steps {
                 // Build your Flask backend
-                sh 'docker build -t flask-app .'
+                sh 'docker build -t server-app .'
                 
                 // Build your React frontend
                 sh 'docker build -t react-app .'
             }
         }
         
-        stage('Test') {
+         stage('Test') {
             steps {
                 // Change directory to the server directory
-                dir('server') {
-                    // Run tests for Flask backend
-                    sh 'docker run --rm flask-app python selenium-test.py'
+                dir('backend') {
+                    // Run tests for Node backend
+                    sh 'docker run --rm webdriver-test'
                 }
             }
         }
