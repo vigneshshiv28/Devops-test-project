@@ -9,15 +9,26 @@ pipeline {
             }
         }
         
-        stage('Build') {
+         stages {
+        stage('Build Backend') {
             steps {
-                // Build your Flask backend
-                sh 'docker build -t server-app .'
-                
-                // Build your React frontend
-                sh 'docker build -t react-app .'
+                // Change to the backend directory
+                dir('backend') {
+                    // Build your Flask backend
+                    sh 'docker build -t server-app .'
+                }
             }
         }
+        stage('Build Frontend') {
+            steps {
+                // Change to the client directory
+                dir('client') {
+                    // Build your React frontend
+                    sh 'docker build -t react-app .'
+                }
+            }
+        }
+    }
         
          stage('Test') {
             steps {
